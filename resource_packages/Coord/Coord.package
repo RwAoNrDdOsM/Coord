@@ -1,0 +1,11 @@
+mod = [
+	"Coord"
+]
+
+package = [
+	"resource_packages/Coord/Coord"
+]
+
+lua = [
+	"scripts/mods/Coord/*"
+]
