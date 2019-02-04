@@ -18,7 +18,7 @@ Teleports you to the id.
 If the id does not contain camera rotation data it doesn't move you're camera.
 
 ## Transfering ID's
-In C:\Users\User\AppData\Roaming\Fatshark\Vermintide 2\user_settings.config you can find you id's
+In `C:\Users\User\AppData\Roaming\Fatshark\Vermintide 2\user_settings.config` you can find you id's.
 Just use a search for your id until you find something like this (Note: the more unique the id, the easier it is to find it)
 ```lua
 db = {
@@ -39,5 +39,4 @@ db = {
     }
 }
 ```
-This example has weird as the id
-You can copy this into another user_settings.config aslong as it is setup the same
+This example has weird as the id. You can copy this into another user_settings.config aslong as it is setup the same.
