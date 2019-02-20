@@ -19,22 +19,36 @@ return {
                 type            = "numeric",
                 default_value   = 100,
                 range           = {0, 1920},
-                decimals_number = 0                            -- optional
+                decimals_number = 0                            
             },
             {
                 setting_id      = "y",
                 type            = "numeric",
                 default_value   = 100,
                 range           = {0, 1080},
-                decimals_number = 0                            -- optional
+                decimals_number = 0                           
             },
             {
                 setting_id      = "font_size",
                 type            = "numeric",
                 default_value   = 22,
                 range           = {0, 32},
-                decimals_number = 0                            -- optional
+                decimals_number = 0                            
             },
+            {
+                setting_id    = "crosshair",
+                type          = "checkbox",
+                default_value = false,
+                sub_widgets   = {
+                    {
+                        setting_id      = "font_size_crosshair",
+                        type            = "numeric",
+                        default_value   = 18,
+                        range           = {0, 32},
+                        decimals_number = 0
+                    },
+                }
+            }
         }
     }
 }

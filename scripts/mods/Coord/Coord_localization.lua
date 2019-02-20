@@ -17,6 +17,15 @@ return {
 	font_size = {
 		en = "Font Size"
 	},
+	crosshair = {
+		en = "Crosshair Camera Rotation"
+	},
+	crosshair_description = {
+		en = "Enables camera rotation to be displayed next to your crosshairs."
+	},
+	font_size_crosshair = {
+		en = "Crosshair Font Size"
+	},
 --[[
 	some_other_text_id = {
 		en = "Translation",        -- English
