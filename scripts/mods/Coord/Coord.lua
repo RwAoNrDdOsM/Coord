@@ -16,14 +16,21 @@ end]]
 local Coord = Coord:new()
 local Teleport = Teleport:new()
 
-mod:hook_safe(IngameHud, "update", function (self, dt, t, menu_active, context)
-	local active_cutscene = self:is_cutscene_active()
-	local peer_id = self.peer_id
-	local player = self.player_manager:player_from_peer_id(peer_id)
+mod:hook_safe(IngameUI, "update", function (self, dt, t, disable_ingame_ui, end_of_level_ui)
+	local _disable_ingame_ui =  self._disable_ingame_ui 
+	local end_screen_active = self:end_screen_active()
+  	if not _disable_ingame_ui and not end_screen_active then
+    	Coord:update_coordinates()
+		Coord:update_text()
+		Coord:update_window()
+	end
+end)
 
-	local player_list_active = self.ingame_player_list_ui.active
+--[[mod:hook_safe(IngameHud, "update", function (self, dt, t, menu_active, context)
 	local is_own_player_dead = self:is_own_player_dead()
 	local gift_popup_active = self.gift_popup_ui:active()
+	local active_cutscene = self:is_cutscene_active()
+	local player_list_active = self.ingame_player_list_ui.active
 	local disable_all_hud = gift_popup_active or active_cutscene or player_list_active
 	local show_hud = not is_own_player_dead and not disable_all_hud
 
@@ -32,4 +39,4 @@ mod:hook_safe(IngameHud, "update", function (self, dt, t, menu_active, context)
 		Coord:update_text()
 		Coord:update_window()
 	end
-end)
+end)]]
