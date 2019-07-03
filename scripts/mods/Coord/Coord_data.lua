@@ -47,6 +47,11 @@ return {
                         range           = {0, 32},
                         decimals_number = 0
                     },
+                    {
+                        setting_id    = "interperete_velocity",
+                        type          = "checkbox",
+                        default_value = false,
+                    }
                 }
             }
         }

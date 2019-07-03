@@ -5,6 +5,7 @@ Coord = class(Coord)
 Coord.init = function(self)
 	self.player_rotation = "Not Initialised"
 	self.player_position = "Not Initialised"
+	self.current_velocity = "Not Initialised"
 	self.window = {
 		size = {500, 59},
 		depth = 900,
@@ -37,6 +38,16 @@ Coord.update_coordinates = function(self)
 			--local position = "Position (" .. tostring(player_position[1]) .. ", " tostring(player_position[2]) .. ", " tostring(player_position[3]) .. ")"
 			self.player_rotation = player_rotation
 			self.player_position = player_position
+		end
+		local locomotion_extension = ScriptUnit.extension(unit, "locomotion_system")
+		if locomotion_extension then
+			local current_velocity = locomotion_extension:current_velocity()
+			local x_velocity = string.format("%.3f", current_velocity[1])
+			self.current_velocity_x = x_velocity
+			local y_velocity = string.format("%.3f", current_velocity[2])
+			self.current_velocity_y = y_velocity
+			local z_velocity = string.format("%.3f", current_velocity[3])
+			self.current_velocity_z = z_velocity
 		end
 	end
 end
@@ -135,13 +146,14 @@ Coord.update_text = function(self)
 	self:_draw_text(tostring(self.player_rotation), 5, 5 + self.window.font_size*0.7)
     self:_draw_text(tostring(self.player_position), 5, 5 + (self.window.font_size*2))
    
-    local background = mod:get("background")
-    if background == true then
+    if mod:get("background") then
         self:_draw_background()
 	end
-	local crosshair = mod:get("crosshair")
-    if crosshair == true then
-        self:_draw_text_on_crosshair(tostring(self.player_rotation), 0, 0)
+    if mod:get("crosshair") then
+		self:_draw_text_on_crosshair(tostring(self.player_rotation), 0, 0)
+		self:_draw_text_on_crosshair(tostring(self.current_velocity_x), 0, -10 - self.window.font_size_crosshair)
+		self:_draw_text_on_crosshair(tostring(self.current_velocity_y), 75, -10 - self.window.font_size_crosshair)
+		self:_draw_text_on_crosshair(tostring(self.current_velocity_z), 150, -10 - self.window.font_size_crosshair)
     end
 end
 

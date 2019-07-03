@@ -13,9 +13,26 @@ Teleport.tp_unit = function(self, unit, position, rotation)
     
     if rotation then
         local rotation = QuaternionBox.unbox(rotation)
-        network_manager.network_transmit:send_rpc_server("rpc_teleport_unit_to", unit_id, position, rotation)
+        local local_player = Managers.player:local_player()
+		local player_unit = local_player.player_unit
+
+		if Unit.alive(player_unit) then
+			local pos = position
+			local rot = rotation
+			local locomotion = ScriptUnit.extension(player_unit, "locomotion_system")
+			locomotion:teleport_to(pos, rot)
+		end
     else
-        network_manager.network_transmit:send_rpc_server("rpc_teleport_unit_to", unit_id, position, Unit.local_rotation(unit, 0))
+        local rotation = Unit.local_rotation(unit, 0)
+        local local_player = Managers.player:local_player()
+		local player_unit = local_player.player_unit
+
+		if Unit.alive(player_unit) then
+			local pos = position
+			local rot = rotation
+			local locomotion = ScriptUnit.extension(player_unit, "locomotion_system")
+			locomotion:teleport_to(pos, rot)
+		end
     end
 end
 
@@ -33,9 +50,26 @@ Teleport.tpid_unit = function(self, id, unit)
             local rotation = QuaternionBox(0, 0, 0, 0)
             QuaternionBox.store(rotation, rot[1], rot[2], rot[3], rot[4])
             local rotation = QuaternionBox.unbox(rotation)
-            network_manager.network_transmit:send_rpc_server("rpc_teleport_unit_to", unit_id, position, rotation)
+            local local_player = Managers.player:local_player()
+		local player_unit = local_player.player_unit
+
+		if Unit.alive(player_unit) then
+			local pos = position
+			local rot = rotation
+			local locomotion = ScriptUnit.extension(player_unit, "locomotion_system")
+			locomotion:teleport_to(pos, rot)
+		end
         else
-            network_manager.network_transmit:send_rpc_server("rpc_teleport_unit_to", unit_id, position, Unit.local_rotation(unit, 0))
+            local rotation = Unit.local_rotation(unit, 0)
+            local local_player = Managers.player:local_player()
+		local player_unit = local_player.player_unit
+
+		if Unit.alive(player_unit) then
+			local pos = position
+			local rot = rotation
+			local locomotion = ScriptUnit.extension(player_unit, "locomotion_system")
+			locomotion:teleport_to(pos, rot)
+		end
         end
     else
         mod:echo("ID: " .. tostring(id) .. " doesn't exist.")

@@ -17,9 +17,7 @@ local Coord = Coord:new()
 local Teleport = Teleport:new()
 
 mod:hook_safe(IngameUI, "update", function (self, dt, t, disable_ingame_ui, end_of_level_ui)
-	local _disable_ingame_ui =  self._disable_ingame_ui 
-	local end_screen_active = self:end_screen_active()
-  	if not _disable_ingame_ui and not end_screen_active then
+  	if not disable_ingame_ui and not end_of_level_ui then
     	Coord:update_coordinates()
 		Coord:update_text()
 		Coord:update_window()
